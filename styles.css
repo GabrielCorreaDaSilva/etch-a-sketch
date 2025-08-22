@@ -1,0 +1,16 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+#grid-container {
+    display: flex;
+    justify-content: center;
+}
+
+
+.unit {
+    width: 26px;
+    height: 26px;
+    background-color: rgb(71, 77, 92);
+}
