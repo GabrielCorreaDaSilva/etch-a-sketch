@@ -1,5 +1,6 @@
-let paintBrushColor = 'black';
+let paintBrushColor = 'pink';
 let isRandomColor = false;
+let isShade = false;
 
 const randomColor = () => {
     const red = randomNumber = Math.floor(Math.random() * (255 - 1 + 1)) + 1;
@@ -9,9 +10,18 @@ const randomColor = () => {
  }
 
 const paintDiv = function (e) {
+    let opacity = parseFloat(e.target.style.opacity) || 0;
     isRandomColor ?
-    e.target.setAttribute('style', `background-color: ${randomColor()}`) :    
-    e.target.setAttribute('style', `background-color: ${paintBrushColor}`);
+    e.target.setAttribute('style', `background-color: ${randomColor()};`) :    
+    e.target.setAttribute('style', `background-color: ${paintBrushColor};`);
+    
+    if(isShade ) {
+        opacity += 0.1;
+        
+    } else opacity = 1;
+    e.target.style.opacity = opacity
+    // console.log(e.target.style.opacity)
+
 }
 const initializeGrid = (size) => {
     const container = document.querySelector('#grid-container');
@@ -45,6 +55,11 @@ newGridButton.addEventListener('click', function() {
 const randomizeColorButton = document.querySelector('#random-color');
 randomizeColorButton.addEventListener('click', () =>  {
     isRandomColor ? isRandomColor = false : isRandomColor = true;
+});
+
+const shadeButton = document.querySelector('#shade');
+shadeButton.addEventListener('click', () =>  {
+    isShade ? isShade = false : isShade = true;
 });
 
 const grid = initializeGrid(16);

@@ -24,3 +24,7 @@ body{
     height: 6px;
     background-color: white;
 }
+
+.invisible {
+    opacity: 0;
+}
