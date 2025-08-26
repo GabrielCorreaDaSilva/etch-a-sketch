@@ -19,4 +19,17 @@ const initializeGrid = (columns, rows) => {
     return container;
 }
 
+const newGrid = document.querySelector('#new-grid');
+newGrid.addEventListener('click', function() {
+    const side = prompt('How many squares per side?');
+    if(side > 100 || side < 1) 
+    {
+        alert('invalid value');
+        return;
+    }
+    
+    grid.textContent = '';
+    grid = initializeGrid(side, side);
+})
+
 const grid = initializeGrid(16, 16);
