@@ -14,24 +14,29 @@ const paintDiv = function (e) {
     isRandomColor ?
     e.target.setAttribute('style', `background-color: ${randomColor()};`) :    
     e.target.setAttribute('style', `background-color: ${paintBrushColor};`);
-    
+    // Can paint a lighter shade on top of a darker one
     if(isShade ) {
         opacity += 0.1;
-        
-    } else opacity = 1;
-    e.target.style.opacity = opacity
-    // console.log(e.target.style.opacity)
-
+        e.target.style.opacity = opacity;
+    } else e.target.style.opacity = '';
+    // Cannot paint a lighter shade on top of a darker one
+    // if(isShade ) {
+    //     opacity += 0.1;
+    // } else opacity = 1;
+    // e.target.style.opacity = opacity;
 }
 const initializeGrid = (size) => {
     const container = document.querySelector('#grid-container');
+    container.addEventListener('mouseover', (e) => {
+        if(e.target.classList.contains('unit')) {
+            paintDiv(e);
+        }
+    });
     for(let i = 0; i <= size; i++){
         const column = document.createElement('div');
-        column.setAttribute('class', 'column');
         for(let j = 0; j <= size; j++) {
             const unit = document.createElement('div');
             unit.setAttribute('class', 'unit');
-            unit.addEventListener('mouseover', paintDiv);
             column.appendChild(unit);
         }
         container.appendChild(column);
